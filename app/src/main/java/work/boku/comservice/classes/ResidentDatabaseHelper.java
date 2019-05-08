@@ -44,7 +44,7 @@ public class ResidentDatabaseHelper extends SQLiteOpenHelper {
         db.insert(DB_NANME, null, values);
     }
 
-    // 数据库删（按社区ID查询删除）
+    // 数据库删（按社区ID）
     public void removeResident(String community_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(DB_NANME, "community_id = ?", new String[]{community_id});
