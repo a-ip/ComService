@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ComService</string>
+    <string name="default_account">0000</string>
+    <string name="default_password">123456</string>
+</resources>
