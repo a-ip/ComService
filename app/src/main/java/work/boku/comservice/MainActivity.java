@@ -1,11 +1,11 @@
 package work.boku.comservice;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import work.boku.comservice.activities.BaseActivity;
 import work.boku.comservice.classes.ResidentBean;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -13,5 +13,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ResidentBean bean = new ResidentBean();
+
     }
 }
