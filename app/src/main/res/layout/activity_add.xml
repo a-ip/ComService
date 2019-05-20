@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="15dp"
+    android:orientation="vertical"
+    tools:context=".activities.AddActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/DB_add_hint"
+        android:textSize="30sp" />
+
+    <EditText
+        android:id="@+id/et_insert_community_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/insert_community_id"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_insert_identity_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/insert_identity_number"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_insert_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/insert_name"
+        android:inputType="text" />
+
+    <EditText
+        android:id="@+id/et_insert_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:hint="@string/insert_phone_number"
+        android:inputType="text" />
+
+    <Button
+        android:id="@+id/bt_insert_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/insert_end"
+        android:textSize="30sp" />
+
+</LinearLayout>

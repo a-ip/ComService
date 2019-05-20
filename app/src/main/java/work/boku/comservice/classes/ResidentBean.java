@@ -4,16 +4,21 @@ import android.util.Log;
 
 import java.util.UUID;
 
-public class ResidentBean {
+import work.boku.comservice.activities.BaseActivity;
+
+public class ResidentBean extends BaseActivity {
 
     private static String TAG = "ResidentBean";
 
     private String community_id;// 社区ID
+
     private String identity_number;// 身份证号
 
     private String name;// 姓名
 
-    private String uuid;// UUID调试用
+    private String phone_number;// 手机号码
+
+    private String uuid;// UUID，调试用
 
     public ResidentBean() {
         uuid = UUID.randomUUID().toString();
@@ -44,6 +49,14 @@ public class ResidentBean {
         this.name = name;
     }
 
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
     public String getUuid() {
         return uuid;
     }
@@ -51,4 +64,5 @@ public class ResidentBean {
     public void setUuid(String uuid) {
         this.uuid = uuid;
     }
+
 }

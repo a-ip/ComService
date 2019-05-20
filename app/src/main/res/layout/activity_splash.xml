@@ -20,7 +20,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="100dp"
-        android:text="@string/info"
+        android:text="@string/app_info"
         android:textColor="#fff"
         android:textSize="24dp" />
 

@@ -6,8 +6,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.WindowManager;
 
-import work.boku.comservice.MainActivity;
 import work.boku.comservice.R;
+import work.boku.comservice.MainActivity;
 
 public class SplashActivity extends BaseActivity {
 
@@ -52,7 +52,7 @@ public class SplashActivity extends BaseActivity {
                 //而用了多线程后，将耗时任务放到子线程，这样主线程(UI线程)就不会卡住
                 handler.sendEmptyMessage(0);
             }
-        }, 3000);
+        }, 2500);
     }
 
 }
