@@ -1,9 +1,5 @@
 package work.boku.comservice.classes;
 
-import android.util.Log;
-
-import java.util.UUID;
-
 import work.boku.comservice.activities.BaseActivity;
 
 public class ResidentBean extends BaseActivity {
@@ -18,11 +14,8 @@ public class ResidentBean extends BaseActivity {
 
     private String phone_number;// 手机号码
 
-    private String uuid;// UUID，调试用
 
     public ResidentBean() {
-        uuid = UUID.randomUUID().toString();
-        Log.d(TAG, uuid);
     }
 
     public String getCommunity_id() {
@@ -55,14 +48,6 @@ public class ResidentBean extends BaseActivity {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
     }
 
 }

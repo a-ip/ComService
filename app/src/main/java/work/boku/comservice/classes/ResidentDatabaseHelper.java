@@ -14,11 +14,11 @@ public class ResidentDatabaseHelper extends SQLiteOpenHelper {
     public static final String DB_NAME = "Resident";
 
     public static final String CREATE_RESIDENT_DB = "create table community (" +
-            "uuid text primary key, " +
-            "community_id text, " +
-            "identity_number text, " +
-            "name text, " +
-            "phone_number text" +
+            "system_id INTEGER PRIMARY KEY, " +
+            "community_id TEXT, " +
+            "identity_number TEXT, " +
+            "name TEXT, " +
+            "phone_number TEXT" +
             ")";
 
     public ResidentDatabaseHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {

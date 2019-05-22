@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import work.boku.comservice.R;
+import work.boku.comservice.Utils.GlobalUtil;
 import work.boku.comservice.classes.ResidentBean;
 import work.boku.comservice.classes.ResidentDatabaseHelper;
 
@@ -14,6 +15,8 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
     private EditText et_identity_number;
     private EditText et_name;
     private EditText et_phone_number;
+
+    public static ResidentDatabaseHelper databaseHelper;
 
     ResidentBean bean = new ResidentBean();
 
@@ -33,7 +36,7 @@ public class AddActivity extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bt_insert_end:
-                new ResidentDatabaseHelper(this,);
+                GlobalUtil.getInstance().databaseHelper.addResident(bean);
                 break;
         }
     }
