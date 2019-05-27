@@ -15,19 +15,11 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/et_insert_community_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:hint="@string/insert_community_id"
-        android:inputType="text" />
-
-    <EditText
         android:id="@+id/et_insert_identity_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/insert_identity_number"
+        android:hint="@string/insert_in"
         android:inputType="text" />
 
     <EditText
@@ -35,7 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/insert_name"
+        android:hint="@string/insert_rn"
         android:inputType="text" />
 
     <EditText
@@ -43,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:hint="@string/insert_phone_number"
+        android:hint="@string/insert_pn"
         android:inputType="text" />
 
     <Button

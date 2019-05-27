@@ -41,7 +41,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         // 获取用户输入的邮箱，密码，做校验
         String username = et_username.getText().toString();
 
-        // 判断是否输入了邮箱
+        // 判断是否输入
         if (TextUtils.isEmpty(username)) {
             Toast.makeText(this, R.string.username_hint, Toast.LENGTH_SHORT).show();
             return;

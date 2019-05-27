@@ -15,7 +15,7 @@
 
     <string name="welcome">欢迎使用社区服务系统</string>
     <string name="add_record">添加记录</string>
-    <string name="manage_record">管理记录</string>
+    <string name="manage_record">查看记录</string>
 
     <string name="DB_add_hint">请输入你要添加的新记录</string>
 
@@ -24,11 +24,19 @@
     <string name="name">姓名</string>
     <string name="phone_number">手机号码</string>
 
-    <string name="insert_community_id">请在此输入社区编号</string>
-    <string name="insert_identity_number">请在此输入身份证号</string>
-    <string name="insert_name">请在此输入姓名</string>
-    <string name="insert_phone_number">请在此输入电话号码</string>
+    <string name="insert_hint">请输入</string>
+    <string name="insert_here">在此输入</string>
+
+    <string name="insert_in">请在此输入身份证号</string>
+    <string name="insert_rn">请在此输入姓名</string>
+    <string name="insert_pn">请在此输入电话号码</string>
 
     <string name="insert_end">输入完成</string>
+    
+    <string name="insert_succeed">添加成功</string>
+
+    <string name="err_in_hint">身份证号输入错误！</string>
+    <string name="err_rn_hint">姓名输入错误！</string>
+    <string name="err_pn_hint">手机号输入错误</string>
 
 </resources>

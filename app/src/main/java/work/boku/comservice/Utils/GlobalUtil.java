@@ -1,24 +1,27 @@
 package work.boku.comservice.Utils;
 
-import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 
-import work.boku.comservice.classes.ResidentDatabaseHelper;
+import work.boku.comservice.classes.ResidentBean;
 
-public class GlobalUtil {
-    private static GlobalUtil instance;
-    private Context context;
+public class GlobalUtil extends AppCompatActivity {
 
-    public ResidentDatabaseHelper databaseHelper;
-
-    public static GlobalUtil getInstance() {
-        if (instance == null) {
-            instance = new GlobalUtil();
-        }
-        return instance;
+    public GlobalUtil() {
     }
 
-    public void setContext(Context context) {
-        this.context = context;
-        databaseHelper = new ResidentDatabaseHelper(context, ResidentDatabaseHelper.DB_NAME, null, 1);
+
+
+    public int isEmptyInsert(ResidentBean rb) {
+        if (TextUtils.isEmpty(rb.getIdentity_number())) {
+            return 1;
+        }
+        if (TextUtils.isEmpty(rb.getResident_name())) {
+            return 2;
+        }
+        if (TextUtils.isEmpty(rb.getPhone_number())) {
+            return 3;
+        }
+        return 0;
     }
 }

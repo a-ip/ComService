@@ -22,7 +22,7 @@
         android:text="@string/add_record" />
 
     <Button
-        android:id="@+id/bt_manage"
+        android:id="@+id/bt_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/manage_record" />
