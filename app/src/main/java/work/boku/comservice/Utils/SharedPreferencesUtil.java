@@ -9,17 +9,18 @@ import android.content.SharedPreferences;
 
 public class SharedPreferencesUtil {
     private static final String TAG = "TAG";
-    private static final String KEY_LOGIN = "KEY_LOGIN";
+    private static final String KEY_FIRST = "KEY_FIRST";
+    private static final String KEY_LEVEL = "KEY_LEVEL";
 
-    private static SharedPreferences mPreferences;
-    private static SharedPreferences.Editor mEditor;
-    private static SharedPreferencesUtil mSharedPreferencesUtil;
-    private final Context context;
+    private static SharedPreferences mySP;
+    private static SharedPreferences.Editor mySPE;
+    private static SharedPreferencesUtil mySPU;
+    private Context context;
 
     public SharedPreferencesUtil(Context context) {
         this.context = context.getApplicationContext();
-        mPreferences = this.context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
-        mEditor = mPreferences.edit();
+        mySP = this.context.getSharedPreferences(TAG, Context.MODE_PRIVATE);
+        mySPE = mySP.edit();
     }
 
     /**
@@ -29,57 +30,58 @@ public class SharedPreferencesUtil {
      * @return
      */
     public static SharedPreferencesUtil getInstance(Context context) {
-        if (mSharedPreferencesUtil == null) {
-            mSharedPreferencesUtil = new SharedPreferencesUtil(context);
+        if (mySPU == null) {
+            mySPU = new SharedPreferencesUtil(context);
         }
-        return mSharedPreferencesUtil;
+        return mySPU;
     }
 
-    /**
-     * 判断是否登录
-     *
-     * @return
-     */
-    public boolean isLogin() {
-        return getBoolean(KEY_LOGIN, false);
+    // 判断是否为第一次登录，默认设置为是
+    public boolean isFirst() {
+        return getBoolean(KEY_FIRST, true);
     }
 
-    /**
-     * 更改登录状态
-     *
-     * @param value
-     */
-    public void setLogin(boolean value) {
-        putBoolean(KEY_LOGIN, value);
+    // 修改第一次登录状态
+    public void setFirst(boolean value) {
+        putBoolean(KEY_FIRST, value);
     }
 
-    //--------私有方法
+    // 判断用户权限，默认设置为0
+    public int getLevel() {
+        return getInt(KEY_LEVEL, 0);
+    }
+
+    // 修改用户权限
+    public void setLevel(int value) {
+        putInt(KEY_LEVEL, value);
+    }
+
+    // 私有方法
     private void put(String key, String value) {
-        mEditor.putString(key, value);
-        mEditor.commit();
-    }
-
-    private void putBoolean(String key, boolean value) {
-        mEditor.putBoolean(key, value);
-        mEditor.commit();
+        mySPE.putString(key, value);
+        mySPE.commit();
     }
 
     private String get(String key) {
-        return mPreferences.getString(key, "");
+        return mySP.getString(key, "");
+    }
+
+    private void putBoolean(String key, boolean value) {
+        mySPE.putBoolean(key, value);
+        mySPE.commit();
     }
 
     private boolean getBoolean(String key, boolean defaultValue) {
-        return mPreferences.getBoolean(key, defaultValue);
+        return mySP.getBoolean(key, defaultValue);
     }
 
 
     private void putInt(String key, int value) {
-        mEditor.putInt(key, value);
-        mEditor.apply();
+        mySPE.putInt(key, value);
+        mySPE.apply();
     }
 
     private int getInt(String key, int defaultValue) {
-        return mPreferences.getInt(key, defaultValue);
+        return mySP.getInt(key, defaultValue);
     }
-    //--------end 私有方法
 }

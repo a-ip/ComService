@@ -3,23 +3,15 @@ package work.boku.comservice.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import work.boku.comservice.R;
+import work.boku.comservice.classes.ResidentDBHelper;
 
 public class SplashActivity extends BaseActivity {
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
-            startActivity(intent);
-            //关闭当前界面
-            finish();
-        }
-    };
+    private final static String TAG = "SplashActivity";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +20,22 @@ public class SplashActivity extends BaseActivity {
         //去除状态栏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        handler.postDelayed(new Runnable() {
-            @Override
+        new Handler().postDelayed(new Runnable() {
             public void run() {
-                handler.sendEmptyMessage(0);
+                new ResidentDBHelper(SplashActivity.this);
+//                Log.d(TAG, "run: 00001 value =" + i);
+                Intent mainIntent;
+//                Log.d(TAG, "run: 00002 spu value =" + Boolean.toString(spu.isFirst()));
+                if (spu.isFirst()) {
+                    mainIntent = new Intent(SplashActivity.this, AddActivity.class);
+                    Toast.makeText(SplashActivity.this, R.string.first_use, Toast.LENGTH_LONG).show();
+                } else {
+                    mainIntent = new Intent(SplashActivity.this, LoginActivity.class);
+                }
+//                Log.d(TAG, "run: 00003");
+                SplashActivity.this.startActivity(mainIntent);
+                SplashActivity.this.finish();
+//                Log.d(TAG, "run: 00004");
             }
         }, 2500);
     }

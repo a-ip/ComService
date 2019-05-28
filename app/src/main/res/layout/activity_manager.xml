@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".activities.ManagerActivity">
 
     <TextView
         android:id="@+id/tv_wel"
@@ -22,7 +22,7 @@
         android:text="@string/add_record" />
 
     <Button
-        android:id="@+id/bt_select"
+        android:id="@+id/bt_to_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/manage_record" />

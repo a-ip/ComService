@@ -14,6 +14,15 @@
         android:text="@string/DB_add_hint"
         android:textSize="30sp" />
 
+    <TextView
+        android:id="@+id/tv_first_hint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp"
+        android:text="@string/first_add_hind"
+        android:textSize="15sp" />
+
     <EditText
         android:id="@+id/et_insert_identity_number"
         android:layout_width="match_parent"
@@ -36,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:hint="@string/insert_pn"
-        android:inputType="text" />
+        android:inputType="number" />
 
     <Button
         android:id="@+id/bt_insert_end"
@@ -45,6 +54,15 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="50dp"
         android:text="@string/insert_end"
+        android:textSize="30sp" />
+
+    <Button
+        android:id="@+id/bt_first_insert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="@string/first_insert"
         android:textSize="30sp" />
 
 </LinearLayout>

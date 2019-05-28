@@ -2,17 +2,22 @@ package work.boku.comservice.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import work.boku.comservice.R;
-import work.boku.comservice.Utils.Constants;
-import work.boku.comservice.MainActivity;
+import java.util.ArrayList;
 
-public class LoginActivity extends BaseActivity implements View.OnClickListener {
+import work.boku.comservice.R;
+import work.boku.comservice.Utils.JavaUtil;
+import work.boku.comservice.classes.ResidentBean;
+
+public class LoginActivity extends BaseActivity {
+
+    private static final String TAG = "LoginActivity";
 
     private EditText et_username;
     private EditText et_password;
@@ -26,51 +31,52 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
         et_username = findViewById(R.id.et_insert_username);
         et_password = findViewById(R.id.et_insert_password);
 
-        bt_login.setOnClickListener(this);
+        Button btAddResident = findViewById(R.id.bt_insert_end);
+
+        bt_login.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String un = et_username.getText().toString();
+                String pw = et_password.getText().toString();
+
+                int isValid = JavaUtil.isValidLogin(un, pw);
+                Log.d(TAG, "un: " + un + "pw: " + pw + "v: " + isValid);
+                switch (isValid) {
+                    case 1:
+                        Toast.makeText(LoginActivity.this, R.string.username_error, Toast.LENGTH_SHORT).show();
+                        return;
+                    case 2:
+                        Toast.makeText(LoginActivity.this, R.string.password_error, Toast.LENGTH_SHORT).show();
+                        return;
+                    case 3:
+                        Toast.makeText(LoginActivity.this, R.string.username_error, Toast.LENGTH_SHORT).show();
+                        return;
+                    default:
+                        ArrayList<ResidentBean> rbList = rDBh.selectAllResident();
+                        for (ResidentBean rb : rbList
+                        ) {
+                            if (Integer.parseInt(un) == rb.getCommunity_id() && pw.equals(rb.getPasswd())) {
+                                Toast.makeText(LoginActivity.this, R.string.login_succeed, Toast.LENGTH_SHORT).show();
+                                int rlv = rb.getPermission_level();
+                                switch (rlv) {
+                                    case 0:
+                                        spu.setLevel(rlv);
+                                        Intent userIntent = new Intent(LoginActivity.this, UserActivity.class);
+                                        startActivity(userIntent);
+                                        return;
+                                    default:
+                                        spu.setLevel(rlv);
+                                        Intent managerIntent = new Intent(LoginActivity.this, ManagerActivity.class);
+                                        startActivity(managerIntent);
+                                        return;
+                                }
+                            }
+                        }
+                        Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_SHORT).show();
+                        return;
+                }
+            }
+        });
     }
-
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.bt_login:
-                login();
-                break;
-        }
-    }
-
-    public void login() {
-        // 获取用户输入的邮箱，密码，做校验
-        String username = et_username.getText().toString();
-
-        // 判断是否输入
-        if (TextUtils.isEmpty(username)) {
-            Toast.makeText(this, R.string.username_hint, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String password = et_password.getText().toString();
-
-        //判断是否输入了密码
-        if (TextUtils.isEmpty(password)) {
-            Toast.makeText(this, R.string.password_hint, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        //TODO 在这里就调用调用服务端的登录接口
-        //我们这里就简单实现，将密码和用户名都写到本地了
-        if (Constants.USERNAME.equals(username) && Constants.PASSWORD.equals(password)) {
-            // 通常软件的做法是，这里登录完成后保存一个标志，下次就不用在登录了
-            sp.setLogin(true);
-
-            //登录成功，进入首页
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-
-            //关闭当前界面
-            finish();
-        } else {
-            //登录失败，进行提示
-            Toast.makeText(this, R.string.login_error, Toast.LENGTH_SHORT).show();
-        }
-    }
-
 }
+
