@@ -1,9 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activities.UserActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+        android:id="@+id/tv_wel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        android:gravity="center_horizontal"
+        android:text="@string/system_welcome"
+        android:textSize="40dp" />
+
+    <Button
+        android:id="@+id/bt_view_own_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/view_personal_info"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_user_function"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/user_function"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_manager_function"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/manager_function"
+        android:textSize="20sp" />
+</LinearLayout>

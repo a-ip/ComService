@@ -40,7 +40,7 @@ public class LoginActivity extends BaseActivity {
                 String pw = et_password.getText().toString();
 
                 int isValid = JavaUtil.isValidLogin(un, pw);
-                Log.d(TAG, "un: " + un + "pw: " + pw + "v: " + isValid);
+//                Log.d(TAG, "un: " + un + "pw: " + pw + "v: " + isValid);
                 switch (isValid) {
                     case 1:
                         Toast.makeText(LoginActivity.this, R.string.username_error, Toast.LENGTH_SHORT).show();
@@ -55,25 +55,47 @@ public class LoginActivity extends BaseActivity {
                         ArrayList<ResidentBean> rbList = rDBh.selectAllResident();
                         for (ResidentBean rb : rbList
                         ) {
+                            Log.d(TAG, "onClick: " + rb.getCommunity_id() + "::" + rb.getIdentity_number() + "::" + rb.getResident_name());
                             if (Integer.parseInt(un) == rb.getCommunity_id() && pw.equals(rb.getPasswd())) {
-                                Toast.makeText(LoginActivity.this, R.string.login_succeed, Toast.LENGTH_SHORT).show();
-                                int rlv = rb.getPermission_level();
-                                switch (rlv) {
-                                    case 0:
-                                        spu.setLevel(rlv);
-                                        Intent userIntent = new Intent(LoginActivity.this, UserActivity.class);
-                                        startActivity(userIntent);
-                                        return;
-                                    default:
-                                        spu.setLevel(rlv);
-                                        Intent managerIntent = new Intent(LoginActivity.this, ManagerActivity.class);
-                                        startActivity(managerIntent);
-                                        return;
+
+                                spu.setMyCID(rb.getCommunity_id());
+                                spu.setMyPW(rb.getPasswd());
+                                spu.setMyIN(rb.getIdentity_number());
+                                spu.setMyRN(rb.getResident_name());
+                                spu.setMyPN(rb.getPhone_number());
+                                spu.setMyPL(rb.getPermission_level());
+
+                                spu.setCCID(rb.getCommunity_id());
+                                if (pw.equals("123456")) {
+                                    Toast.makeText(LoginActivity.this,
+                                            R.string.first_login, Toast.LENGTH_SHORT).show();
+                                    Intent userIntent = new Intent(LoginActivity.this,
+                                            PasswdActivity.class);
+                                    startActivity(userIntent);
+                                    LoginActivity.this.finish();
+                                    return;
+                                } else {
+                                    spu.setFirstLogin(false);
                                 }
+
+                                Log.d(TAG, "spu-CID: " + spu.getMyCID());
+                                Log.d(TAG, "spu-PW: " + spu.getMyPW());
+                                Log.d(TAG, "spu-IN: " + spu.getMyIN());
+                                Log.d(TAG, "spu-RN: " + spu.getMyRN());
+                                Log.d(TAG, "spu-PN: " + spu.getMyPN());
+                                Log.d(TAG, "spu-PL: " + spu.getMyPL());
+
+                                et_username.setText(null);
+                                et_password.setText(null);
+
+                                Toast.makeText(LoginActivity.this, R.string.login_succeed, Toast.LENGTH_SHORT).show();
+                                Intent userIntent = new Intent(LoginActivity.this, UserActivity.class);
+                                startActivity(userIntent);
+
+                                LoginActivity.this.finish();
                             }
                         }
                         Toast.makeText(LoginActivity.this, R.string.login_error, Toast.LENGTH_SHORT).show();
-                        return;
                 }
             }
         });

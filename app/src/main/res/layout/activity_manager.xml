@@ -8,23 +8,24 @@
     tools:context=".activities.ManagerActivity">
 
     <TextView
-        android:id="@+id/tv_wel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:text="@string/welcome"
-        android:textSize="30dp" />
+        android:text="@string/manager_function"
+        android:textAlignment="center"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/bt_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/add_record" />
+        android:text="@string/add_resident"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/bt_to_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/manage_record" />
+        android:text="@string/manage_resident"
+        android:textSize="20sp" />
 
 </LinearLayout>

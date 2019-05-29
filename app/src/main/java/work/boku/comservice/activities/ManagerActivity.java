@@ -2,13 +2,12 @@ package work.boku.comservice.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
 import work.boku.comservice.R;
 
-public class ManagerActivity extends AppCompatActivity {
+public class ManagerActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

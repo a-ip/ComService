@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activities.InfoActivity">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/personal_info"
+        android:textAlignment="center"
+        android:textSize="50sp" />
+
+    <TextView
+        android:id="@+id/tv_my_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:text="@string/my_info"
+        android:textAlignment="center"
+        android:textSize="20sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/community_id"
+            android:textSize="20sp" />
+
+        <ViewSwitcher
+            android:id="@+id/vs_cid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_info_cid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/community_id"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_new_cid"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp" />
+        </ViewSwitcher>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/ll_pw"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/passwd"
+            android:textSize="20sp" />
+
+        <ViewSwitcher
+            android:id="@+id/vs_pw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_info_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:text="@string/passwd"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_new_pw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textSize="20sp" />
+        </ViewSwitcher>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/identity_number"
+            android:textSize="20sp" />
+
+        <ViewSwitcher
+            android:id="@+id/vs_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_info_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/identity_number"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_new_in"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textSize="20sp" />
+        </ViewSwitcher>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/resident_name"
+            android:textSize="20sp" />
+
+        <ViewSwitcher
+            android:id="@+id/vs_rn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_info_rn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/resident_name"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_new_rn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textSize="20sp" />
+        </ViewSwitcher>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/phone_number"
+            android:textSize="20sp" />
+
+        <ViewSwitcher
+            android:id="@+id/vs_pn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_info_pn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/phone_number"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/et_new_pn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:textSize="20sp" />
+        </ViewSwitcher>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/permission_level"
+            android:textSize="20sp" />
+
+        <ViewSwitcher
+            android:id="@+id/vs_pl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp">
+
+            <TextView
+                android:id="@+id/tv_info_pl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/permission_level"
+                android:textSize="20sp" />
+
+            <Spinner
+                android:id="@+id/spinner_new_pl"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></Spinner>
+        </ViewSwitcher>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/bt_update_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/update_info" />
+
+    <Button
+        android:id="@+id/bt_save_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/save_info" />
+
+    <Button
+        android:id="@+id/bt_delete_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/delete_info" />
+
+</LinearLayout>

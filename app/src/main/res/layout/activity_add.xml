@@ -23,29 +23,60 @@
         android:text="@string/first_add_hind"
         android:textSize="15sp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/identity_number"
+        android:textSize="20sp" />
+
     <EditText
         android:id="@+id/et_insert_identity_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:hint="@string/insert_in"
-        android:inputType="text" />
+        android:inputType="phone" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/resident_name"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_insert_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:hint="@string/insert_rn"
         android:inputType="text" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/phone_number"
+        android:textSize="20sp" />
 
     <EditText
         android:id="@+id/et_insert_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:hint="@string/insert_pn"
-        android:inputType="number" />
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/tv_insert_pl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/permission_level"
+        android:textSize="20sp" />
+
+    <Spinner
+        android:id="@+id/spinner_pl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></Spinner>
 
     <Button
         android:id="@+id/bt_insert_end"

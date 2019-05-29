@@ -1,45 +1,67 @@
 package work.boku.comservice.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import work.boku.comservice.R;
-import work.boku.comservice.Utils.MyAdapter;
 import work.boku.comservice.classes.ResidentBean;
 
 public class SelectActivity extends BaseActivity {
+
+    static SelectActivity instance;
+    public static final String TAG = "SelectActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select);
+        instance = this;
 
-        RecyclerView rv_sa = findViewById(R.id.rv_select);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        rv_sa.setHasFixedSize(true);
-        ArrayList<String> strList = new ArrayList<String>();
         ArrayList<ResidentBean> rbList = rDBh.selectAllResident();
-        for (int i = 0; i < rbList.size(); i++) {
-            strList.add(rbList.get(i).getResident_name());
-            Log.d(rbList.get(i).getResident_name(), "debug-111");
-        }
-        MyAdapter listAdapter = new MyAdapter(this, strList);
-        rv_sa.setAdapter(listAdapter);
 
-        Button bt_manage = findViewById(R.id.bt_manage);
-        bt_manage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int i = rDBh.selectAllResident().size();
-                Toast.makeText(SelectActivity.this, "数据库中共有" + i + "个数据", Toast.LENGTH_LONG).show();
-            }
-        });
+        TextView tv_resident_info = findViewById(R.id.tv_resident_info);
+
+        LinearLayout ll_resident = this.findViewById(R.id.ll_resident);
+        for (ResidentBean rb : rbList
+        ) {
+            TextView tv_rb = new TextView(SelectActivity.this);
+            SpannableStringBuilder ssb = new SpannableStringBuilder();
+            String showText = "社区编号：" + rb.getCommunity_id() + "，姓名：" +
+                    rb.getResident_name() + "，点击查看详情";
+            ssb.append(showText);
+
+            final String rn = rb.getResident_name();
+            final int cid = rb.getCommunity_id();
+            ClickableSpan cs = new ClickableSpan() {
+                @Override
+                public void onClick(View widget) {
+                    spu.setCCID(cid);
+                    Intent infoIntent = new Intent(SelectActivity.this, InfoActivity.class);
+                    startActivity(infoIntent);
+                    Toast.makeText(SelectActivity.this, "查看" + rn + "的个人信息",
+                            Toast.LENGTH_LONG).show();
+                }
+            };
+
+            ssb.setSpan(cs, showText.length() - 4, showText.length(),
+                    Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            tv_rb.setText(ssb);
+            tv_rb.setMovementMethod(LinkMovementMethod.getInstance());
+
+            tv_rb.setTextSize(20);
+            tv_rb.setBackgroundResource(R.drawable.tvborder_layout);
+//            Log.d(TAG, "00002" + rb.getCommunity_id() + rb.getResident_name());
+            ll_resident.addView(tv_rb);
+        }
     }
 }

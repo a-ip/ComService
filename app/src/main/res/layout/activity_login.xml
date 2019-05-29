@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/welcome"
+        android:text="@string/system_welcome"
         android:textSize="30sp" />
 
     <TextView
@@ -29,18 +29,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
+        android:autofillHints=""
         android:hint="@string/username_hint"
-        android:inputType="text"
-        android:autofillHints="" />
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/et_insert_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:autofillHints=""
         android:hint="@string/password_hint"
-        android:inputType="textPassword"
-        android:autofillHints="" />
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/bt_login"

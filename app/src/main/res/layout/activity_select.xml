@@ -8,21 +8,36 @@
     tools:context=".activities.SelectActivity">
 
     <TextView
+        android:id="@+id/tv_resident_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/resident_info"
         android:textSize="30sp" />
 
-    <Button
-        android:id="@+id/bt_manage"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/SA_manage" />
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:scrollbars="none">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_select"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+        <HorizontalScrollView
+            android:id="@+id/scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbarAlwaysDrawHorizontalTrack="false"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/ll_resident"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="9dp"
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+        </HorizontalScrollView>
+    </ScrollView>
 
 </LinearLayout>

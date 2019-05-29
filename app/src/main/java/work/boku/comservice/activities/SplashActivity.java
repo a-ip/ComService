@@ -25,8 +25,8 @@ public class SplashActivity extends BaseActivity {
                 new ResidentDBHelper(SplashActivity.this);
 //                Log.d(TAG, "run: 00001 value =" + i);
                 Intent mainIntent;
-//                Log.d(TAG, "run: 00002 spu value =" + Boolean.toString(spu.isFirst()));
-                if (spu.isFirst()) {
+//                Log.d(TAG, "run: 00002 spu value =" + Boolean.toString(spu.isFirstUse()));
+                if (spu.isFirstUse()) {
                     mainIntent = new Intent(SplashActivity.this, AddActivity.class);
                     Toast.makeText(SplashActivity.this, R.string.first_use, Toast.LENGTH_LONG).show();
                 } else {
@@ -37,7 +37,7 @@ public class SplashActivity extends BaseActivity {
                 SplashActivity.this.finish();
 //                Log.d(TAG, "run: 00004");
             }
-        }, 2500);
+        }, 2500L);
     }
 
 }

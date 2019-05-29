@@ -6,7 +6,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 public class ResidentDBHelper extends SQLiteOpenHelper {
 
@@ -35,35 +34,39 @@ public class ResidentDBHelper extends SQLiteOpenHelper {
     }
 
     // 添加第一名居民（系统管理员）
-    public void addFirst(ResidentBean rb) {
+    public void addWithPL(ResidentBean rb, int pl) {
         SQLiteDatabase db = this.getWritableDatabase();
         final String FIRST_SQL = "INSERT INTO Resident" +
                 "(identity_number, resident_name, phone_number, permission_level)VALUES('" +
                 rb.getIdentity_number() + "', '" +
                 rb.getResident_name() + "', '" +
-                rb.getPhone_number() +
-                "', 2)";
+                rb.getPhone_number() + "', " +
+                pl + ")";
         db.execSQL(FIRST_SQL);
     }
 
     // 向居民表中添加数据
-    public void addResident(ResidentBean rb) {
+    public void addFullResident(ResidentBean rb) {
         SQLiteDatabase db = this.getWritableDatabase();
-        final String INSERT_SQL = "INSERT INTO Resident" +
-                "(identity_number, resident_name, phone_number)VALUES('" +
-                rb.getIdentity_number() + "', '" +
-                rb.getResident_name() + "', '" +
-                rb.getPhone_number() +
-                "')";
+        final String INSERT_SQL = "INSERT INTO Resident(community_id, passwd, identity_number, " +
+                "resident_name, phone_number, permission_level) VALUES(" +
+                rb.getCommunity_id() + " , '" + rb.getPasswd() + "', '" +
+                rb.getIdentity_number() + " ', '" + rb.getResident_name() + "', '" +
+                rb.getPhone_number() + "', " + rb.getPermission_level() + ")";
         db.execSQL(INSERT_SQL);
     }
 
-    LinkedList<ResidentBean> rbList = new LinkedList<ResidentBean>();
-
     // 删除
-    public void deleteResident(int id) {
+    public void deleteResident(int cid) {
         SQLiteDatabase db = this.getWritableDatabase();
-        final String DELETE_SQL = "";
+        final String DELETE_SQL = "DELETE FROM Resident WHERE community_id = " + cid;
+        db.execSQL(DELETE_SQL);
+    }
+
+    // 更改居民表中数据
+    public void updateResident(ResidentBean rb) {
+        deleteResident(rb.getCommunity_id());
+        addFullResident(rb);
     }
 
     // 查询居民表中所有数据，返回为ArrayList<ResidentBean>形式的数组
@@ -96,6 +99,32 @@ public class ResidentDBHelper extends SQLiteOpenHelper {
         return rbList;
     }
 
+    // 按社区编号在居民表中查找居民，返回一个ResidentBean类的对象
+    public ResidentBean selectResident(int cid) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ResidentBean rb = new ResidentBean();
+        final String SELECT_SQL = "SELECT * FROM Resident WHERE community_id = " + cid;
+        Cursor cur = db.rawQuery(SELECT_SQL, null);
+        if (cur.moveToFirst()) {
+            do {
+                String pw = cur.getString(cur.getColumnIndex("passwd"));
+                String in = cur.getString(cur.getColumnIndex("identity_number"));
+                String rn = cur.getString(cur.getColumnIndex("resident_name"));
+                String pn = cur.getString(cur.getColumnIndex("phone_number"));
+                int pl = cur.getInt(cur.getColumnIndex("permission_level"));
+
+                rb.setCommunity_id(cid);
+                rb.setPasswd(pw);
+                rb.setIdentity_number(in);
+                rb.setResident_name(rn);
+                rb.setPhone_number(pn);
+                rb.setPermission_level(pl);
+            } while (cur.moveToNext());
+            cur.close();
+        }
+        return rb;
+    }
+
     // 返回居民表中总数
     public int countDB() {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -106,5 +135,4 @@ public class ResidentDBHelper extends SQLiteOpenHelper {
         cur.close();
         return dbCount;
     }
-
 }
