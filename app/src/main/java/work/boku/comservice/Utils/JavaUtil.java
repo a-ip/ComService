@@ -85,14 +85,6 @@ public class JavaUtil {
         return 0;
     }
 
-    // 检查权限值是否合法
-    public static boolean isValidPL(int pl) {
-        if (pl == 0 || pl == 1 || pl == 2) {
-            return true;
-        }
-        return false;
-    }
-
     // 获取当前时间并转为String类型
     public static String getNow() {
         String timeNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
