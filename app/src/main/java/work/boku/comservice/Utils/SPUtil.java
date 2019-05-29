@@ -20,7 +20,8 @@ public class SPUtil {
 
     private static final String KEY_PL = "KEY_LEVEL"; // 权限等级
 
-    private static final String KEY_CCID = "KEY_CCID"; // 作为管理员时选中的居民的社区编号
+    private static final String KEY_CCID = "KEY_CCID"; // 当前用户选中的居民的社区编号
+    private static final String KEY_CNID = "KEY_CNID"; // 当前用户选中的社区通知的通知编号
 
     private static SharedPreferences mySP;
     private static SharedPreferences.Editor mySPE;
@@ -134,6 +135,16 @@ public class SPUtil {
     // 修改当前用户所选择的用户的社区编号
     public void setCCID(int value) {
         putInt(KEY_CCID, value);
+    }
+
+    // 检查当前用户所选择的用户的社区编号，默认设置为0
+    public int getCNID() {
+        return getInt(KEY_CNID, 0);
+    }
+
+    // 修改当前用户所选择的用户的社区编号
+    public void setCNID(int value) {
+        putInt(KEY_CNID, value);
     }
 
     // 私有方法

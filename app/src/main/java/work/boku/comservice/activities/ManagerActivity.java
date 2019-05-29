@@ -14,7 +14,7 @@ public class ManagerActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
 
-        Button bt_add = findViewById(R.id.bt_add);
+        Button bt_add = findViewById(R.id.bt_add_resident);
         bt_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,11 +23,20 @@ public class ManagerActivity extends BaseActivity {
             }
         });
 
-        Button bt_select = findViewById(R.id.bt_to_select);
+        Button bt_select = findViewById(R.id.bt_select);
         bt_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(ManagerActivity.this, SelectActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        Button bt_add_notice = findViewById(R.id.bt_add_notice);
+        bt_add_notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ManagerActivity.this, AddNoticeActivity.class);
                 startActivity(intent);
             }
         });

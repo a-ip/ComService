@@ -52,7 +52,7 @@ public class LoginActivity extends BaseActivity {
                         Toast.makeText(LoginActivity.this, R.string.username_error, Toast.LENGTH_SHORT).show();
                         return;
                     default:
-                        ArrayList<ResidentBean> rbList = rDBh.selectAllResident();
+                        ArrayList<ResidentBean> rbList = dbh.selectAllResident();
                         for (ResidentBean rb : rbList
                         ) {
                             Log.d(TAG, "onClick: " + rb.getCommunity_id() + "::" + rb.getIdentity_number() + "::" + rb.getResident_name());

@@ -1,26 +1,24 @@
 package work.boku.comservice.classes;
 
-import work.boku.comservice.activities.BaseActivity;
-
 /**
- *  ResidentBean：居民类
- *  community id：社区编号，整型，作用户名，在数据库中默认由系统自动分配
- *  passwd：密码，字符型，输入时隐藏，默认为123456
- *  identity number：身份证号，字符串型
- *  resident name：居民姓名，字符串型
- *  phone number：手机号码，字符串型
- *  permission level：用户权限等级
- *  用户权限详解：
- *  0：普通用户
- *  1：用户管理员
- *  2：系统管理员
- *
- *  普通用户可以查看自有信息、修改部分自有信息、查看社区通知
- *  用户管理员除了拥有普通用户的所有权限外，可以查看他人部分自有信息（除密码）、添加新用户、全修改社区通知
- *  系统管理员除了拥有用户管理员的所有权限外，可以修改他人部分自有信息（除密码）、删除用户
+ * ResidentBean：居民类
+ * community id：社区编号，整型，作用户名，在数据库中默认由系统自动分配
+ * passwd：密码，字符型，输入时隐藏，默认为123456
+ * identity number：身份证号，字符串型
+ * resident name：居民姓名，字符串型
+ * phone number：手机号码，字符串型
+ * permission level：用户权限等级
+ * 用户权限详解：
+ * 0：普通用户
+ * 1：用户管理员
+ * 2：系统管理员
+ * <p>
+ * 普通用户可以查看自有信息、修改部分自有信息、查看社区通知
+ * 用户管理员除了拥有普通用户的所有权限外，可以查看他人部分自有信息（除密码）、添加新用户、全修改社区通知
+ * 系统管理员除了拥有用户管理员的所有权限外，可以修改他人部分自有信息（除密码）、删除用户
  */
 
-public class ResidentBean extends BaseActivity {
+public class ResidentBean {
 
     // private static String TAG = "ResidentBean";
 

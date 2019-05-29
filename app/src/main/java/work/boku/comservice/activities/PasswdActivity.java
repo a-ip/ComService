@@ -32,7 +32,7 @@ public class PasswdActivity extends BaseActivity {
         bt_change_pw.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rb = rDBh.selectResident(spu.getMyCID());
+                rb = dbh.selectResident(spu.getMyCID());
                 String pw1 = et_first_pw.getText().toString();
                 String pw2 = et_second_pw.getText().toString();
                 if (TextUtils.isEmpty(pw1) || TextUtils.isEmpty(pw2)) {
@@ -53,9 +53,10 @@ public class PasswdActivity extends BaseActivity {
                 Toast.makeText(PasswdActivity.this, R.string.change_pw_succeed,
                         Toast.LENGTH_SHORT).show();
 
-                rb.setPasswd(pw1);
+                ResidentBean newRB = rb;
+                newRB.setPasswd(pw1);
                 spu.setFirstLogin(false);
-                rDBh.updateResident(rb);
+                dbh.updateResident(newRB);
                 Intent UserIntent = new Intent(PasswdActivity.this, LoginActivity.class);
                 startActivity(UserIntent);
                 PasswdActivity.this.finish();

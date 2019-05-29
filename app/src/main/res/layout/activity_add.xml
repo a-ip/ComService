@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/DB_add_hint"
+        android:text="@string/resident_add_hint"
         android:textSize="30sp" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/et_insert_identity_number"
+        android:id="@+id/et_insert_in"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/insert_in"
@@ -45,7 +45,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/et_insert_name"
+        android:id="@+id/et_insert_rn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/insert_rn"
@@ -59,7 +59,7 @@
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/et_insert_phone_number"
+        android:id="@+id/et_insert_pn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/insert_pn"

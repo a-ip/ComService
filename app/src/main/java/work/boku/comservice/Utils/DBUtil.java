@@ -2,11 +2,11 @@ package work.boku.comservice.Utils;
 
 import android.content.Context;
 
-import work.boku.comservice.classes.ResidentDBHelper;
+import work.boku.comservice.classes.DBHelper;
 
 public class DBUtil {
 
-    private ResidentDBHelper rDBh;
+    private DBHelper rDBh;
 
     private final Context context;
 

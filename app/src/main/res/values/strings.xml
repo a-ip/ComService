@@ -12,6 +12,12 @@
     <string name="phone_number">手机号码：</string>
     <string name="permission_level">权限等级：</string>
 
+    <!--公告属性-->
+    <string name="notice_id">公告编号</string>
+    <string name="notice_time">公告时间</string>
+    <string name="notice_title">公告标题 </string>
+    <string name="notice_content">公告内容</string>
+
     <!--管理员等级-->
     <string name="pl_user">普通用户</string>
     <string name="pl_user_manager">用户管理员</string>
@@ -25,7 +31,7 @@
     <string name="password_error">密码不能为空！</string>
     <string name="login_error">用户名或密码输入错误！</string>
     <string name="login_succeed">登录成功！</string>
-    <string name="manager_detected">检测到您是管理员！</string>
+    <string name="manager_detected">检测到您是管理员</string>
 
     <!--启动界面-->
     <string name="splash_info">这是一个简单的社区服务APP</string>
@@ -34,9 +40,10 @@
     <!--管理员界面-->
     <string name="add_resident">添加居民</string>
     <string name="manage_resident">管理居民</string>
+    <string name="add_notice">添加公告</string>
 
-    <!--添加界面-->
-    <string name="DB_add_hint">请输入你要添加的新记录</string>
+    <!--居民添加界面-->
+    <string name="resident_add_hint">请输入你要添加的新记录</string>
     <string name="first_add_hind">第一名用户会被自动设为系统管理员</string>
 
     <string name="insert_in">请在此输入身份证号</string>
@@ -53,14 +60,17 @@
     <string name="insert_succeed">添加成功！</string>
     <string name="first_succeed">添加成功，应用即将重启……</string>
 
+    <!--公告添加界面-->
+    <string name="notice_add_hint">请输入你要添加的公告</string>
+    <string name="insert_nt">请在此输入公告标题</string>
+    <string name="insert_nc">请在此输入公告内容</string>
+    <string name="announce_notice">发布公告</string>
+
     <!--用户界面-->
     <string name="system_welcome">欢迎使用社区服务系统</string>
     <string name="view_personal_info">查看个人信息</string>
-    <string name="user_function">用户功能</string>
+    <string name="view_notice">查看社区公告</string>
     <string name="manager_function">管理员功能</string>
-
-    <!--居民一览界面-->
-    <string name="resident_info">居民信息</string>
 
     <!--查看个人信息界面-->
     <string name="personal_info">个人信息</string>
@@ -68,6 +78,20 @@
     <string name="update_info">修改信息</string>
     <string name="delete_info">删除信息</string>
     <string name="save_info">保存信息</string>
+    <string name="insert_cid">请在此输入社区编号</string>
+    <string name="insert_pw">请在此输入密码</string>
+
+    <!--查看社区公告界面-->
+    <string name="notice">公告</string>
+    <string name="update_notice">修改公告</string>
+    <string name="delete_notice">删除公告</string>
+    <string name="save_notice">保存公告</string>
+
+    <!--居民一览界面-->
+    <string name="resident_info">居民信息</string>
+
+    <!--公告一览界面-->
+    <string name="notice_info">社区公告</string>
 
     <string name="repetitive_cid_update">新的社区编号不可用，不能修改！</string>
     <string name="repetitive_in_update">新的身份证号不可用，不能修改！</string>

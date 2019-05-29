@@ -52,6 +52,7 @@
                 android:id="@+id/et_new_cid"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/insert_cid"
                 android:inputType="number"
                 android:textSize="20sp" />
         </ViewSwitcher>
@@ -87,6 +88,7 @@
                 android:id="@+id/et_new_pw"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/insert_pw"
                 android:inputType="textPassword"
                 android:textSize="20sp" />
         </ViewSwitcher>
@@ -119,6 +121,7 @@
                 android:id="@+id/et_new_in"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/insert_in"
                 android:inputType="number"
                 android:textSize="20sp" />
         </ViewSwitcher>
@@ -151,6 +154,7 @@
                 android:id="@+id/et_new_rn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/insert_rn"
                 android:inputType="text"
                 android:textSize="20sp" />
         </ViewSwitcher>
@@ -183,6 +187,7 @@
                 android:id="@+id/et_new_pn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/insert_pn"
                 android:inputType="phone"
                 android:textSize="20sp" />
         </ViewSwitcher>
@@ -223,18 +228,30 @@
         android:id="@+id/bt_update_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:text="@string/update_info" />
 
-    <Button
-        android:id="@+id/bt_save_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/save_info" />
 
-    <Button
-        android:id="@+id/bt_delete_info"
+    <LinearLayout
+        android:id="@+id/ll_update_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/delete_info" />
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/bt_save_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/save_info" />
+
+        <Button
+            android:id="@+id/bt_delete_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:text="@string/delete_info" />
+    </LinearLayout>
 
 </LinearLayout>

@@ -57,6 +57,8 @@ public class InfoActivity extends BaseActivity {
     private ViewSwitcher vs_pl;
 
     private Button bt_update_info;
+
+    private LinearLayout ll_update_info;
     private Button bt_save_info;
     private Button bt_delete_info;
 
@@ -69,10 +71,10 @@ public class InfoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
 
-        rb = rDBh.selectResident(spu.getCCID());
-        Log.d(TAG, "onCreate: spu-cid:" + rb.getCommunity_id());
-        Log.d(TAG, "onCreate: spu-CCID:" + spu.getCCID());
-        Log.d(TAG, "onCreate: spu-MyCid:" + spu.getMyCID());
+        rb = dbh.selectResident(spu.getCCID());
+//        Log.d(TAG, "onCreate: spu-cid:" + rb.getCommunity_id());
+//        Log.d(TAG, "onCreate: spu-CCID:" + spu.getCCID());
+//        Log.d(TAG, "onCreate: spu-MyCid:" + spu.getMyCID());
 
         // 设置selectStat
         if (spu.getCCID() == spu.getMyCID()) {
@@ -123,12 +125,12 @@ public class InfoActivity extends BaseActivity {
         spinnerNewPL.setAdapter(aa);
 
         bt_update_info = findViewById(R.id.bt_update_info);
+
+        ll_update_info = findViewById(R.id.ll_update_info);
         bt_save_info = findViewById(R.id.bt_save_info);
         bt_delete_info = findViewById(R.id.bt_delete_info);
 
-        bt_save_info.setVisibility(View.GONE);
-        bt_delete_info.setVisibility(View.GONE);
-
+        ll_update_info.setVisibility(View.INVISIBLE);
         // 根据访问情况隐藏部分信息
         switch (infoStat) {
             case 0: // 普通用户访问自己、用户管理员（合称普管）访问自己
@@ -228,8 +230,9 @@ public class InfoActivity extends BaseActivity {
 
                 bt_update_info.setVisibility(View.GONE);
                 bt_save_info.setVisibility(View.VISIBLE);
-                if (infoStat != 1) {
-                    bt_delete_info.setVisibility(View.VISIBLE);
+                ll_update_info.setVisibility(View.VISIBLE);
+                if (infoStat == 1) {
+                    bt_delete_info.setEnabled(false);
                 }
             }
         });
@@ -257,7 +260,7 @@ public class InfoActivity extends BaseActivity {
                 newRB.setPermission_level(insert_pl);
                 Log.d(TAG, "onClick: newpl = " + insert_pl);
 
-                int i = JavaUtil.isRepetitiveInfo(newRB, rDBh.selectAllResident());
+                int i = JavaUtil.isRepetitiveInfo(newRB, dbh.selectAllResident());
                 Log.d(TAG, "onClick: newcid = " + newRB.getCommunity_id());
                 Log.d(TAG, "onClick: oldcid = " + rb.getCommunity_id());
                 switch (i) {
@@ -275,7 +278,7 @@ public class InfoActivity extends BaseActivity {
                         }
                 }
 
-                rDBh.updateResident(newRB);
+                dbh.updateResident(newRB);
                 Toast.makeText(InfoActivity.this, R.string.update_succeed,
                         Toast.LENGTH_SHORT).show();
             }
@@ -284,9 +287,9 @@ public class InfoActivity extends BaseActivity {
         bt_delete_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                rDBh.deleteResident(rb.getCommunity_id());
+                dbh.deleteResident(rb.getCommunity_id());
                 SelectActivity.instance.finish();
-                Intent selectIntent = new Intent (InfoActivity.this, SelectActivity.class);
+                Intent selectIntent = new Intent(InfoActivity.this, SelectActivity.class);
                 startActivity(selectIntent);
                 InfoActivity.this.finish();
             }

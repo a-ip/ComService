@@ -14,21 +14,28 @@
         android:layout_margin="30dp"
         android:gravity="center_horizontal"
         android:text="@string/system_welcome"
-        android:textSize="40dp" />
+        android:textSize="30dp" />
 
     <Button
-        android:id="@+id/bt_view_own_info"
+        android:id="@+id/bt_view_personal_info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/view_personal_info"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/bt_user_function"
+        android:id="@+id/bt_view_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/user_function"
+        android:text="@string/view_notice"
         android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/tv_manager_detected"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/manager_detected"
+        android:textSize="20sp"/>
 
     <Button
         android:id="@+id/bt_manager_function"

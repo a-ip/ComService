@@ -30,13 +30,13 @@ public class AddActivity extends BaseActivity {
      */
     private int addStat;
 
-    private EditText et_identity_number;
-    private EditText et_resident_name;
-    private EditText et_phone_number;
+    private EditText et_insert_in;
+    private EditText et_insert_rn;
+    private EditText et_insert_pn;
     private TextView tv_insert_pl;
     private Spinner spinnerPL;
 
-    ResidentBean rb;
+    private ResidentBean rb;
 
     private String insert_in;
     private String insert_rn;
@@ -61,9 +61,9 @@ public class AddActivity extends BaseActivity {
         }
 
         TextView tvFirst = findViewById(R.id.tv_first_hint);
-        et_identity_number = findViewById(R.id.et_insert_identity_number);
-        et_resident_name = findViewById(R.id.et_insert_name);
-        et_phone_number = findViewById(R.id.et_insert_phone_number);
+        et_insert_in = findViewById(R.id.et_insert_in);
+        et_insert_rn = findViewById(R.id.et_insert_rn);
+        et_insert_pn = findViewById(R.id.et_insert_pn);
         tv_insert_pl = findViewById(R.id.tv_insert_pl);
 
         spinnerPL = findViewById(R.id.spinner_pl);
@@ -109,6 +109,7 @@ public class AddActivity extends BaseActivity {
                         break;
                 }
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
             }
@@ -118,9 +119,9 @@ public class AddActivity extends BaseActivity {
         btAddResident.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                insert_in = et_identity_number.getText().toString();
-                insert_rn = et_resident_name.getText().toString();
-                insert_pn = et_phone_number.getText().toString();
+                insert_in = et_insert_in.getText().toString();
+                insert_rn = et_insert_rn.getText().toString();
+                insert_pn = et_insert_pn.getText().toString();
 
                 if (addStat == 2) {
                     rb = new ResidentBean(2);
@@ -149,21 +150,20 @@ public class AddActivity extends BaseActivity {
                                 Toast.LENGTH_SHORT).show();
                         return;
                     default:
-                        if (JavaUtil.isRepetitiveInfo(rb, rDBh.selectAllResident()) != 0) {
+                        if (JavaUtil.isRepetitiveInfo(rb, dbh.selectAllResident()) != 0) {
                             Toast.makeText(AddActivity.this, R.string.repetitive_in_add,
                                     Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         // 添加完成后将文本框自动清空
-                        et_identity_number.setText(null);
-                        et_resident_name.setText(null);
-                        et_phone_number.setText(null);
+                        et_insert_in.setText(null);
+                        et_insert_rn.setText(null);
+                        et_insert_pn.setText(null);
 
-                        rDBh.addWithPL(rb, insert_pl);
+                        dbh.addResidentWithPL(rb, insert_pl);
                         Toast.makeText(AddActivity.this, R.string.insert_succeed,
                                 Toast.LENGTH_SHORT).show();
-                        return;
                 }
             }
         });
@@ -171,9 +171,9 @@ public class AddActivity extends BaseActivity {
         btAddFirst.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                insert_in = et_identity_number.getText().toString();
-                insert_rn = et_resident_name.getText().toString();
-                insert_pn = et_phone_number.getText().toString();
+                insert_in = et_insert_in.getText().toString();
+                insert_rn = et_insert_rn.getText().toString();
+                insert_pn = et_insert_pn.getText().toString();
 
                 rb = new ResidentBean();
                 rb.setIdentity_number(insert_in);
@@ -199,14 +199,14 @@ public class AddActivity extends BaseActivity {
                         return;
                     default:
                         // 输入完成后重启前，不允许修改之前的信息
-                        et_identity_number.setFocusable(false);
-                        et_identity_number.setFocusableInTouchMode(false);
-                        et_resident_name.setFocusable(false);
-                        et_resident_name.setFocusableInTouchMode(false);
-                        et_phone_number.setFocusable(false);
-                        et_phone_number.setFocusableInTouchMode(false);
+                        et_insert_in.setFocusable(false);
+                        et_insert_in.setFocusableInTouchMode(false);
+                        et_insert_rn.setFocusable(false);
+                        et_insert_rn.setFocusableInTouchMode(false);
+                        et_insert_pn.setFocusable(false);
+                        et_insert_pn.setFocusableInTouchMode(false);
 
-                        rDBh.addWithPL(rb, 2);
+                        dbh.addResidentWithPL(rb, 2);
                         Toast.makeText(AddActivity.this, R.string.first_succeed,
                                 Toast.LENGTH_LONG).show();
                         spu.setFirstUse(false);
@@ -221,7 +221,6 @@ public class AddActivity extends BaseActivity {
                                 android.os.Process.killProcess(android.os.Process.myPid());
                             }
                         }, 1500L);
-                        return;
                 }
             }
         });

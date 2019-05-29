@@ -15,17 +15,24 @@
         android:textSize="50sp" />
 
     <Button
-        android:id="@+id/bt_add"
+        android:id="@+id/bt_add_resident"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/add_resident"
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/bt_to_select"
+        android:id="@+id/bt_select"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/manage_resident"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/bt_add_notice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/add_notice"
         android:textSize="20sp" />
 
 </LinearLayout>

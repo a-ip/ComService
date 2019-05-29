@@ -27,9 +27,7 @@ public class SelectActivity extends BaseActivity {
         setContentView(R.layout.activity_select);
         instance = this;
 
-        ArrayList<ResidentBean> rbList = rDBh.selectAllResident();
-
-        TextView tv_resident_info = findViewById(R.id.tv_resident_info);
+        ArrayList<ResidentBean> rbList = dbh.selectAllResident();
 
         LinearLayout ll_resident = this.findViewById(R.id.ll_resident);
         for (ResidentBean rb : rbList
@@ -46,7 +44,8 @@ public class SelectActivity extends BaseActivity {
                 @Override
                 public void onClick(View widget) {
                     spu.setCCID(cid);
-                    Intent infoIntent = new Intent(SelectActivity.this, InfoActivity.class);
+                    Intent infoIntent = new Intent(SelectActivity.this,
+                            InfoActivity.class);
                     startActivity(infoIntent);
                     Toast.makeText(SelectActivity.this, "查看" + rn + "的个人信息",
                             Toast.LENGTH_LONG).show();

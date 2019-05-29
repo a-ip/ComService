@@ -7,7 +7,7 @@ import android.view.WindowManager;
 import android.widget.Toast;
 
 import work.boku.comservice.R;
-import work.boku.comservice.classes.ResidentDBHelper;
+import work.boku.comservice.classes.DBHelper;
 
 public class SplashActivity extends BaseActivity {
 
@@ -22,7 +22,7 @@ public class SplashActivity extends BaseActivity {
 
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                new ResidentDBHelper(SplashActivity.this);
+                new DBHelper(SplashActivity.this);
 //                Log.d(TAG, "run: 00001 value =" + i);
                 Intent mainIntent;
 //                Log.d(TAG, "run: 00002 spu value =" + Boolean.toString(spu.isFirstUse()));

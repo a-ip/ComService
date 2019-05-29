@@ -2,6 +2,7 @@ package work.boku.comservice.Utils;
 
 import android.text.TextUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import work.boku.comservice.classes.ResidentBean;
@@ -69,7 +70,7 @@ public class JavaUtil {
         if (TextUtils.isEmpty(String.valueOf(rb.getCommunity_id()))) {
             return 1;
         }
-        if (TextUtils.isEmpty(rb.getPasswd())){
+        if (TextUtils.isEmpty(rb.getPasswd())) {
             return 2;
         }
         if (TextUtils.isEmpty(rb.getIdentity_number())) {
@@ -85,10 +86,17 @@ public class JavaUtil {
     }
 
     // 检查权限值是否合法
-    public boolean isValidPL(int pl) {
+    public static boolean isValidPL(int pl) {
         if (pl == 0 || pl == 1 || pl == 2) {
             return true;
         }
         return false;
+    }
+
+    // 获取当前时间并转为String类型
+    public static String getNow() {
+        String timeNow = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").
+                format(System.currentTimeMillis());
+        return timeNow;
     }
 }
