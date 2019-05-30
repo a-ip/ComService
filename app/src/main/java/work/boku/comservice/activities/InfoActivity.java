@@ -231,7 +231,7 @@ public class InfoActivity extends BaseActivity {
                 bt_update_info.setVisibility(View.GONE);
                 bt_save_info.setVisibility(View.VISIBLE);
                 ll_update_info.setVisibility(View.VISIBLE);
-                if (infoStat == 1) {
+                if (infoStat == 0|| infoStat == 1) {
                     bt_delete_info.setEnabled(false);
                 }
             }
