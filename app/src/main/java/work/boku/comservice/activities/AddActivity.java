@@ -14,6 +14,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 import work.boku.comservice.R;
 import work.boku.comservice.Utils.JavaUtil;
 import work.boku.comservice.classes.ResidentBean;
@@ -84,7 +86,7 @@ public class AddActivity extends BaseActivity {
             case 1:
                 tvFirst.setVisibility(View.GONE);
                 btAddFirst.setVisibility(View.GONE);
-                spinnerPL.setVisibility(View.GONE);
+                spinnerPL.setEnabled(false);
                 tv_insert_pl.setVisibility(View.GONE);
                 break;
             case 2:
@@ -119,23 +121,17 @@ public class AddActivity extends BaseActivity {
         btAddResident.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                insert_in = et_insert_in.getText().toString();
-                insert_rn = et_insert_rn.getText().toString();
-                insert_pn = et_insert_pn.getText().toString();
+                insert_in = et_insert_in.getText().toString().trim();
+                insert_rn = et_insert_rn.getText().toString().trim();
+                insert_pn = et_insert_pn.getText().toString().trim();
 
-                if (addStat == 2) {
-                    rb = new ResidentBean(2);
-                } else {
-                    rb = new ResidentBean();
-                }
+                rb = new ResidentBean();
                 rb.setIdentity_number(insert_in);
-//                Log.d(in, "Identity_number");
                 rb.setResident_name(insert_rn);
-//                Log.d(rn, "Resident_name");
                 rb.setPhone_number(insert_pn);
-//                Log.d(pn, "Phone_number");
+                rb.setPermission_level(insert_pl);
+
                 int isValid = JavaUtil.isValidInsert(rb);
-//                Log.d("eeeee = " + e, "/eeeee");
                 switch (isValid) {
                     case 1:
                         Toast.makeText(AddActivity.this, R.string.err_in_hint,
@@ -150,7 +146,8 @@ public class AddActivity extends BaseActivity {
                                 Toast.LENGTH_SHORT).show();
                         return;
                     default:
-                        if (JavaUtil.isRepetitiveInfo(rb, dbh.selectAllResident()) != 0) {
+                        ArrayList<ResidentBean> rbList = dbh.selectAllResident();
+                        if (JavaUtil.isRepetitiveInfo(rb, rbList)) {
                             Toast.makeText(AddActivity.this, R.string.repetitive_in_add,
                                     Toast.LENGTH_SHORT).show();
                             return;
@@ -161,7 +158,7 @@ public class AddActivity extends BaseActivity {
                         et_insert_rn.setText(null);
                         et_insert_pn.setText(null);
 
-                        dbh.addResidentWithPL(rb, insert_pl);
+                        dbh.newResident(rb);
                         Toast.makeText(AddActivity.this, R.string.insert_succeed,
                                 Toast.LENGTH_SHORT).show();
                 }
@@ -171,19 +168,17 @@ public class AddActivity extends BaseActivity {
         btAddFirst.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                insert_in = et_insert_in.getText().toString();
-                insert_rn = et_insert_rn.getText().toString();
-                insert_pn = et_insert_pn.getText().toString();
+                insert_in = et_insert_in.getText().toString().trim();
+                insert_rn = et_insert_rn.getText().toString().trim();
+                insert_pn = et_insert_pn.getText().toString().trim();
 
                 rb = new ResidentBean();
                 rb.setIdentity_number(insert_in);
-//                Log.d(in, "Identity_number");
                 rb.setResident_name(insert_rn);
-//                Log.d(rn, "Resident_name");
                 rb.setPhone_number(insert_pn);
-//                Log.d(pn, "Phone_number");
+                rb.setPermission_level(2);
                 int isValid = JavaUtil.isValidInsert(rb);
-//                Log.d("eeeee = " + e, "/eeeee");
+
                 switch (isValid) {
                     case 1:
                         Toast.makeText(AddActivity.this, R.string.err_in_hint,
@@ -206,7 +201,7 @@ public class AddActivity extends BaseActivity {
                         et_insert_pn.setFocusable(false);
                         et_insert_pn.setFocusableInTouchMode(false);
 
-                        dbh.addResidentWithPL(rb, 2);
+                        dbh.newResident(rb);
                         Toast.makeText(AddActivity.this, R.string.first_succeed,
                                 Toast.LENGTH_LONG).show();
                         spu.setFirstUse(false);
@@ -218,9 +213,9 @@ public class AddActivity extends BaseActivity {
                                 Intent intent = new Intent(AddActivity.this,
                                         SplashActivity.class);
                                 startActivity(intent);
-                                android.os.Process.killProcess(android.os.Process.myPid());
+                                AddActivity.this.finish();
                             }
-                        }, 1500L);
+                        }, 1000L);
                 }
             }
         });

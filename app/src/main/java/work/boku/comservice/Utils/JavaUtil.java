@@ -34,21 +34,14 @@ public class JavaUtil {
     }
 
     // 用户输入阶段：判断是否有重复的用户，以身份证号来判别
-
-    /**
-     * 1：身份证号相同
-     * 2：社区编号相同
-     */
-    public static int isRepetitiveInfo(ResidentBean rb, ArrayList<ResidentBean> rbList) {
-        for (ResidentBean bean : rbList
+    public static boolean isRepetitiveInfo(ResidentBean rb, ArrayList<ResidentBean> rbList) {
+        for (ResidentBean tempBean : rbList
         ) {
-            if (rb.getIdentity_number().equals(bean.getIdentity_number())) {
-                return 1;
-            } else if (rb.getCommunity_id() == bean.getCommunity_id()) {
-                return 2;
+            if (rb.getIdentity_number().equals(tempBean.getIdentity_number())) {
+                return true;
             }
         }
-        return 0;
+        return false;
     }
 
     // 用户输入阶段：判断居民输入是否有空值

@@ -12,7 +12,6 @@ package work.boku.comservice.classes;
  * 0：普通用户
  * 1：用户管理员
  * 2：系统管理员
- * <p>
  * 普通用户可以查看自有信息、修改部分自有信息、查看社区通知
  * 用户管理员除了拥有普通用户的所有权限外，可以查看他人部分自有信息（除密码）、添加新用户、全修改社区通知
  * 系统管理员除了拥有用户管理员的所有权限外，可以修改他人部分自有信息（除密码）、删除用户
@@ -20,19 +19,19 @@ package work.boku.comservice.classes;
 
 public class ResidentBean {
 
-    // private static String TAG = "ResidentBean";
+    // private static String TAG = "ResidentBean"; // 调试用标签
 
-    private int community_id;// 社区编号
+    private int community_id; // 社区编号
 
-    private String passwd;// 用户密码
+    private String passwd; // 用户密码
 
-    private String identity_number;// 身份证号
+    private String identity_number; // 身份证号
 
-    private String resident_name;// 姓名
+    private String resident_name; // 姓名
 
-    private String phone_number;// 手机号码
+    private String phone_number; // 手机号码
 
-    private int permission_level;// 权限等级
+    private int permission_level; // 权限等级
 
     // 构造方法
     public ResidentBean() {
@@ -40,13 +39,7 @@ public class ResidentBean {
         this.permission_level = 0; // 默认权限为0
     }
 
-    // 构造方法2，生成任意权限的新用户
-    public ResidentBean(int num) {
-        this.passwd = "123456";
-        this.permission_level = num;
-    }
-
-    // getter和setter
+    // getters和setters
     public int getCommunity_id() {
         return community_id;
     }

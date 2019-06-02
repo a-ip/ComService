@@ -31,13 +31,11 @@ public class LoginActivity extends BaseActivity {
         et_username = findViewById(R.id.et_insert_username);
         et_password = findViewById(R.id.et_insert_password);
 
-        Button btAddResident = findViewById(R.id.bt_insert_end);
-
         bt_login.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                String un = et_username.getText().toString();
-                String pw = et_password.getText().toString();
+                String un = et_username.getText().toString().trim();
+                String pw = et_password.getText().toString().trim();
 
                 int isValid = JavaUtil.isValidLogin(un, pw);
 //                Log.d(TAG, "un: " + un + "pw: " + pw + "v: " + isValid);

@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:hint="@string/password_hint"
-        android:inputType="textPassword" />
+        android:inputType="datetime" />
 
     <Button
         android:id="@+id/bt_login"

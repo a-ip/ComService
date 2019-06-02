@@ -18,47 +18,64 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     // 建表
     public void onCreate(SQLiteDatabase db) {
-        final String CREATE_SQL_R = "CREATE TABLE IF NOT EXISTS Resident" +
-                "(community_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        final String CREATE_SQL_R = "CREATE TABLE IF NOT EXISTS resident (" +
+                "community_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "passwd TEXT NOT NULL DEFAULT '123456', " +
                 "identity_number TEXT NOT NULL, " +
                 "resident_name TEXT NOT NULL, " +
                 "phone_number TEXT NOT NULL, " +
-                "permission_level INTEGER DEFAULT 0)";
+                "permission_level INTEGER DEFAULT 0" +
+                ")";
         db.execSQL(CREATE_SQL_R);
 
-        final String CREATE_SQL_N = "CREATE TABLE IF NOT EXISTS notice" +
-                "(notice_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        final String CREATE_SQL_N = "CREATE TABLE IF NOT EXISTS notice (" +
+                "notice_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 "notice_time TEXT, " +
                 "notice_title TEXT, " +
-                "notice_content TEXT)";
+                "notice_content TEXT" +
+                ")";
         db.execSQL(CREATE_SQL_N);
+
+        final String CREATE_SQL_E = "CREATE TABLE IF NOT EXISTS event (" +
+                "    event_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                "    event_name TEXT NOT NULL, " +
+                "    event_detail TEXT NOT NULL, " +
+                "    event_time TEXT NOT NULL, " +
+                "    organizer INTEGER NOT NULL, " +
+                "    max_people INTEGER DEFAULT 0" +
+                ")";
+        db.execSQL(CREATE_SQL_E);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     }
 
-    // 添加第一名居民（系统管理员）
-    public void addResidentWithPL(ResidentBean rb, int pl) {
+    // 添加新居民
+    public void newResident(ResidentBean rb) {
         SQLiteDatabase db = this.getWritableDatabase();
-        final String FIRST_SQL_R1 = "INSERT INTO resident" +
-                "(identity_number, resident_name, phone_number, permission_level)VALUES('" +
+        final String NEW_SQL_R = "INSERT INTO resident " +
+                "(identity_number, resident_name, phone_number, permission_level) VALUES ('" +
                 rb.getIdentity_number() + "', '" +
                 rb.getResident_name() + "', '" +
                 rb.getPhone_number() + "', " +
-                pl + ")";
-        db.execSQL(FIRST_SQL_R1);
+                rb.getPermission_level() +
+                ")";
+        db.execSQL(NEW_SQL_R);
     }
 
-    // 向居民表中添加数据
-    public void addFullResident(ResidentBean rb) {
+    // 向居民表中添加数据（改）
+    public void addResident(ResidentBean rb) {
         SQLiteDatabase db = this.getWritableDatabase();
-        final String INSERT_SQL_R2 = "INSERT INTO resident(community_id, passwd, identity_number, " +
-                "resident_name, phone_number, permission_level) VALUES(" +
-                rb.getCommunity_id() + " , '" + rb.getPasswd() + "', '" +
-                rb.getIdentity_number() + " ', '" + rb.getResident_name() + "', '" +
-                rb.getPhone_number() + "', " + rb.getPermission_level() + ")";
+        final String INSERT_SQL_R2 = "INSERT INTO resident" +
+                "(community_id, passwd, identity_number, resident_name, phone_number, permission_level) VALUES (" +
+                rb.getCommunity_id() + ", '" +
+                rb.getPasswd() + "', '" +
+                rb.getIdentity_number() + "', '" +
+                rb.getResident_name() + "', '" +
+                rb.getPhone_number() + "', " +
+                rb.getPermission_level() +
+                ")";
         db.execSQL(INSERT_SQL_R2);
     }
 
@@ -72,7 +89,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // 更改居民表中数据
     public void updateResident(ResidentBean rb) {
         deleteResident(rb.getCommunity_id());
-        addFullResident(rb);
+        addResident(rb);
     }
 
     // 查询居民表中所有数据，返回为ArrayList<ResidentBean>形式的数组
@@ -131,34 +148,28 @@ public class DBHelper extends SQLiteOpenHelper {
         return rb;
     }
 
-    public void addNotice(NoticeBean nb) {
+    // 新建一条公告
+    public void newNotice(NoticeBean nb) {
         SQLiteDatabase db = this.getWritableDatabase();
-        final String INSERT_SQL_N1 = "INSERT INTO notice (notice_time, notice_title, " +
-                "notice_content) VALUES(" +
-                "DATETIME('NOW', 'LOCALTIME'), '" +
-                nb.getNotice_title() + "', '" +
-                nb.getNotice_content() + "')";
-        db.execSQL(INSERT_SQL_N1);
-    }
-
-    public void addNoticeWithNT(NoticeBean nb) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        final String INSERT_SQL_N2 = "INSERT INTO notice (notice_time, " +
-                "notice_title, notice_content) VALUES('" +
+        final String NEW_SQL_N = "INSERT INTO notice " +
+                "(notice_time, notice_title, notice_content) VALUES ('" +
                 nb.getNotice_time() + "', '" +
                 nb.getNotice_title() + "', '" +
-                nb.getNotice_content() + "')";
-        db.execSQL(INSERT_SQL_N2);
+                nb.getNotice_content() +
+                "')";
+        db.execSQL(NEW_SQL_N);
     }
 
-    public void addFullNotice(NoticeBean nb) {
+    // 向公告表中添加新数据（改）
+    public void addNotice(NoticeBean nb) {
         SQLiteDatabase db = this.getWritableDatabase();
-        final String INSERT_SQL_N3 = "INSERT INTO notice (notice_id, notice_time, " +
-                "notice_title, notice_content) VALUES(" +
+        final String INSERT_SQL_N3 = "INSERT INTO notice " +
+                "(notice_id, notice_time, notice_title, notice_content) VALUES (" +
                 nb.getNotice_id() + ", '" +
                 nb.getNotice_time() + "', '" +
                 nb.getNotice_title() + "', '" +
-                nb.getNotice_content() + "')";
+                nb.getNotice_content() +
+                "')";
         db.execSQL(INSERT_SQL_N3);
     }
 
@@ -172,7 +183,7 @@ public class DBHelper extends SQLiteOpenHelper {
     // 更改公告
     public void updateNotice(NoticeBean nb) {
         deleteNotice(nb.getNotice_id());
-        addFullNotice(nb);
+        addNotice(nb);
     }
 
     // 查询公告表中所有数据，返回为ArrayList<ResidentBean>形式的数组
@@ -222,4 +233,20 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         return nb;
     }
+
+    // 新建一条活动
+    public void newEvent(EventBean eb) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        final String NEW_SQL_E = "INSERT INTO event " +
+                "(event_name, event_detail, event_time, organizer, max_people) VALUES ('" +
+                eb.getEvent_name() + "', '" +
+                eb.getEvent_detail() + "', '" +
+                eb.getEvent_time() + "', " +
+                eb.getOrganizer() + ", " +
+                eb.getMax_people() +
+                ")";
+        db.execSQL(NEW_SQL_E);
+    }
+
+    // 向活动表中添加新数据
 }

@@ -29,16 +29,19 @@ public class AddNoticeActivity extends BaseActivity {
         bt_insert_notice_end.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String nl = et_insert_nl.getText().toString();
-                String nc = et_insert_nc.getText().toString();
+                String nl = et_insert_nl.getText().toString().trim();
+                String nc = et_insert_nc.getText().toString().trim();
                 String nt = JavaUtil.getNow();
 
-                nb = new NoticeBean(nt, nl, nc);
+                nb = new NoticeBean();
+                nb.setNotice_time(nt);
+                nb.setNotice_title(nl);
+                nb.setNotice_content(nc);
 
                 et_insert_nl.setText(null);
                 et_insert_nc.setText(null);
 
-                dbh.addNoticeWithNT(nb);
+                dbh.newNotice(nb);
 
                 Toast.makeText(AddNoticeActivity.this, R.string.insert_succeed,
                         Toast.LENGTH_SHORT).show();

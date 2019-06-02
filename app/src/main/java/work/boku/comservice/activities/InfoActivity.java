@@ -15,6 +15,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import java.util.ArrayList;
+
 import work.boku.comservice.R;
 import work.boku.comservice.Utils.JavaUtil;
 import work.boku.comservice.classes.ResidentBean;
@@ -42,14 +44,12 @@ public class InfoActivity extends BaseActivity {
     private TextView tv_info_pn;
     private TextView tv_info_pl;
 
-    private EditText et_new_cid;
     private EditText et_new_pw;
     private EditText et_new_in;
     private EditText et_new_rn;
     private EditText et_new_pn;
     private Spinner spinnerNewPL;
 
-    private ViewSwitcher vs_cid;
     private ViewSwitcher vs_pw;
     private ViewSwitcher vs_in;
     private ViewSwitcher vs_rn;
@@ -98,7 +98,6 @@ public class InfoActivity extends BaseActivity {
 
         ll_pw = findViewById(R.id.ll_pw);
 
-        vs_cid = findViewById(R.id.vs_cid);
         vs_pw = findViewById(R.id.vs_pw);
         vs_in = findViewById(R.id.vs_in);
         vs_rn = findViewById(R.id.vs_rn);
@@ -114,7 +113,6 @@ public class InfoActivity extends BaseActivity {
         tv_info_pn = findViewById(R.id.tv_info_pn);
         tv_info_pl = findViewById(R.id.tv_info_pl);
 
-        et_new_cid = findViewById(R.id.et_new_cid);
         et_new_pw = findViewById(R.id.et_new_pw);
         et_new_in = findViewById(R.id.et_new_in);
         et_new_rn = findViewById(R.id.et_new_rn);
@@ -134,9 +132,6 @@ public class InfoActivity extends BaseActivity {
         // 根据访问情况隐藏部分信息
         switch (infoStat) {
             case 0: // 普通用户访问自己、用户管理员（合称普管）访问自己
-                // 普管不能修改自己的社区编号
-                et_new_cid.setFocusable(false);
-                et_new_cid.setFocusableInTouchMode(false);
                 // 普管不能修改自己的身份证号
                 et_new_in.setFocusable(false);
                 et_new_in.setFocusableInTouchMode(false);
@@ -189,7 +184,6 @@ public class InfoActivity extends BaseActivity {
         tv_info_pn.setText(pn);
         tv_info_pl.setText(plDetail);
 
-        et_new_cid.setText(cid);
         et_new_pw.setText(pw);
         et_new_in.setText(in);
         et_new_rn.setText(rn);
@@ -221,7 +215,6 @@ public class InfoActivity extends BaseActivity {
         bt_update_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                vs_cid.showNext();
                 vs_pw.showNext();
                 vs_in.showNext();
                 vs_rn.showNext();
@@ -231,7 +224,7 @@ public class InfoActivity extends BaseActivity {
                 bt_update_info.setVisibility(View.GONE);
                 bt_save_info.setVisibility(View.VISIBLE);
                 ll_update_info.setVisibility(View.VISIBLE);
-                if (infoStat == 0|| infoStat == 1) {
+                if (infoStat == 0 || infoStat == 1) {
                     bt_delete_info.setEnabled(false);
                 }
             }
@@ -240,45 +233,36 @@ public class InfoActivity extends BaseActivity {
         bt_save_info.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newCid = et_new_cid.getText().toString();
-                String newPw = et_new_pw.getText().toString();
-                String newIn = et_new_in.getText().toString();
-                String newRn = et_new_rn.getText().toString();
-                String newPn = et_new_pn.getText().toString();
+                int newCid = Integer.parseInt(cid);
+                String newPw = et_new_pw.getText().toString().trim();
+                String newIn = et_new_in.getText().toString().trim();
+                String newRn = et_new_rn.getText().toString().trim();
+                String newPn = et_new_pn.getText().toString().trim();
 
                 ResidentBean newRB = new ResidentBean();
-                if (TextUtils.isEmpty(newCid) || !JavaUtil.isNumeric(newCid)) {
-                    Toast.makeText(InfoActivity.this, R.string.username_error, Toast.LENGTH_SHORT).show();
-                    return;
-                }
 
-                newRB.setCommunity_id(Integer.parseInt(newCid));
+                newRB.setCommunity_id(newCid);
                 newRB.setPasswd(newPw);
                 newRB.setIdentity_number(newIn);
                 newRB.setResident_name(newRn);
                 newRB.setPhone_number(newPn);
                 newRB.setPermission_level(insert_pl);
-                Log.d(TAG, "onClick: newpl = " + insert_pl);
 
-                int i = JavaUtil.isRepetitiveInfo(newRB, dbh.selectAllResident());
-                Log.d(TAG, "onClick: newcid = " + newRB.getCommunity_id());
-                Log.d(TAG, "onClick: oldcid = " + rb.getCommunity_id());
-                switch (i) {
-                    case 1:
-                        if (!rb.getIdentity_number().equals(newRB.getIdentity_number())) {
-                            Toast.makeText(InfoActivity.this, R.string.repetitive_in_update,
-                                    Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                    case 2:
-                        if (rb.getCommunity_id() != newRB.getCommunity_id()) {
-                            Toast.makeText(InfoActivity.this, R.string.repetitive_cid_update,
-                                    Toast.LENGTH_SHORT).show();
-                            return;
-                        }
+                ArrayList<ResidentBean> rbList = dbh.selectAllResident();
+
+                if (JavaUtil.isRepetitiveInfo(newRB, rbList)) {
+                    Toast.makeText(InfoActivity.this, R.string.repetitive_in_update,
+                            Toast.LENGTH_SHORT).show();
+                    return;
                 }
 
-                dbh.updateResident(newRB);
+                spu.setCCID(newRB.getCommunity_id());
+                if (infoStat == 0 || infoStat == 1) {
+                    spu.setMyCID(newRB.getCommunity_id());
+                }
+
+                dbh.deleteResident(rb.getCommunity_id());
+                dbh.addResident(newRB);
                 Toast.makeText(InfoActivity.this, R.string.update_succeed,
                         Toast.LENGTH_SHORT).show();
             }

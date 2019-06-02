@@ -93,7 +93,6 @@
     <!--公告一览界面-->
     <string name="notice_info">社区公告</string>
 
-    <string name="repetitive_cid_update">新的社区编号不可用，不能修改！</string>
     <string name="repetitive_in_update">新的身份证号不可用，不能修改！</string>
     <string name="update_succeed">修改成功！</string>
 

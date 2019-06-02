@@ -90,10 +90,15 @@ public class NoticeActivity extends BaseActivity {
             public void onClick(View v) {
                 int newNid = Integer.parseInt(nid);
                 String newNT = JavaUtil.getNow();
-                String newNL = et_nl.getText().toString();
-                String newNC = et_nc.getText().toString();
+                String newNL = et_nl.getText().toString().trim();
+                String newNC = et_nc.getText().toString().trim();
 
-                NoticeBean newNB = new NoticeBean(newNid, newNT, newNL, newNC);
+                NoticeBean newNB = new NoticeBean();
+                newNB.setNotice_id(newNid);
+                newNB.setNotice_time(newNT);
+                newNB.setNotice_title(newNL);
+                newNB.setNotice_content(newNC);
+
                 dbh.updateNotice(newNB);
 
                 Toast.makeText(NoticeActivity.this, R.string.update_succeed,
@@ -112,6 +117,5 @@ public class NoticeActivity extends BaseActivity {
                 NoticeActivity.this.finish();
             }
         });
-
     }
 }

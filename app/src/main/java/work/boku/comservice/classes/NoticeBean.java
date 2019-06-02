@@ -2,33 +2,15 @@ package work.boku.comservice.classes;
 
 public class NoticeBean {
 
-    int notice_id;
+    int notice_id; // 公告编号
 
-    String notice_time;
+    String notice_time; // 公告时间
 
-    String notice_title;
+    String notice_title; // 公告标题
 
-    String notice_content;
+    String notice_content; // 公告内容
 
     public NoticeBean() {
-    }
-
-    public NoticeBean(String notice_title, String notice_content) {
-        this.notice_title = notice_title;
-        this.notice_content = notice_content;
-    }
-
-    public NoticeBean(String notice_time, String notice_title, String notice_content) {
-        this.notice_time = notice_time;
-        this.notice_title = notice_title;
-        this.notice_content = notice_content;
-    }
-
-    public NoticeBean(int notice_id, String notice_time, String notice_title, String notice_content) {
-        this.notice_id = notice_id;
-        this.notice_time = notice_time;
-        this.notice_title = notice_title;
-        this.notice_content = notice_content;
     }
 
     public int getNotice_id() {

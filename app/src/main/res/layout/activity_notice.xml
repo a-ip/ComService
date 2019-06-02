@@ -86,16 +86,22 @@
         android:id="@+id/vs_nc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bt_update_notice"
         android:layout_below="@+id/tv_view_nc"
         android:layout_marginTop="10dp">
 
-        <TextView
-            android:id="@+id/tv_nc"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textMultiLine"
-            android:text="@string/notice_content"
-            android:textSize="20sp" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_nc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:text="@string/notice_content"
+                android:textSize="20sp" />
+        </ScrollView>
 
         <EditText
             android:id="@+id/et_nc"
@@ -111,15 +117,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/ll_update_notice"
-        android:text="@string/update_notice" />
+        android:text="@string/update_notice"
+        android:textSize="20sp" />
 
     <LinearLayout
         android:id="@+id/ll_update_notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="50dp"
         android:orientation="horizontal">
 
         <Button
@@ -127,14 +132,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/save_notice" />
+            android:text="@string/save_notice"
+            android:textSize="20sp" />
 
         <Button
             android:id="@+id/bt_delete_notice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="0.5"
-            android:text="@string/delete_notice" />
+            android:text="@string/delete_notice"
+            android:textSize="20sp" />
     </LinearLayout>
 
 </RelativeLayout>

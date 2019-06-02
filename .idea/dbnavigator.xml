@@ -66,8 +66,8 @@
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
-          <database-version value="9999.0" />
-          <driver-source value="EXTERNAL" />
+          <database-version value="3.21" />
+          <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />
           <url-type value="FILE" />
