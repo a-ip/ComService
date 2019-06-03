@@ -18,10 +18,14 @@ import work.boku.comservice.classes.NoticeBean;
 
 public class SelectNoticeActivity extends BaseActivity {
 
+    static SelectNoticeActivity instance;
+    public static final String TAG = "SelectActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_notice);
+        instance = this;
 
         ArrayList<NoticeBean> nbList = dbh.selectAllNotice();
 

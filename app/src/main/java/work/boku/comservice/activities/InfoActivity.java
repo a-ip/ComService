@@ -250,7 +250,7 @@ public class InfoActivity extends BaseActivity {
 
                 ArrayList<ResidentBean> rbList = dbh.selectAllResident();
 
-                if (JavaUtil.isRepetitiveInfo(newRB, rbList)) {
+                if (JavaUtil.isRepetitiveInfo(newRB, rbList) && spu.getCCID() != newRB.getCommunity_id()) {
                     Toast.makeText(InfoActivity.this, R.string.repetitive_in_update,
                             Toast.LENGTH_SHORT).show();
                     return;
@@ -265,6 +265,10 @@ public class InfoActivity extends BaseActivity {
                 dbh.addResident(newRB);
                 Toast.makeText(InfoActivity.this, R.string.update_succeed,
                         Toast.LENGTH_SHORT).show();
+                SelectActivity.instance.finish();
+                Intent selectIntent = new Intent(InfoActivity.this, SelectActivity.class);
+                startActivity(selectIntent);
+                InfoActivity.this.finish();
             }
         });
 
@@ -272,6 +276,8 @@ public class InfoActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dbh.deleteResident(rb.getCommunity_id());
+                Toast.makeText(InfoActivity.this, R.string.delete_succeed,
+                        Toast.LENGTH_SHORT).show();
                 SelectActivity.instance.finish();
                 Intent selectIntent = new Intent(InfoActivity.this, SelectActivity.class);
                 startActivity(selectIntent);

@@ -103,6 +103,11 @@ public class NoticeActivity extends BaseActivity {
 
                 Toast.makeText(NoticeActivity.this, R.string.update_succeed,
                         Toast.LENGTH_SHORT).show();
+                SelectNoticeActivity.instance.finish();
+                Intent selectIntent = new Intent(NoticeActivity.this,
+                        SelectNoticeActivity.class);
+                startActivity(selectIntent);
+                NoticeActivity.this.finish();
             }
         });
 
@@ -110,9 +115,11 @@ public class NoticeActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 dbh.deleteNotice(nb.getNotice_id());
-                SelectActivity.instance.finish();
+                Toast.makeText(NoticeActivity.this, R.string.delete_succeed,
+                        Toast.LENGTH_SHORT).show();
+                SelectNoticeActivity.instance.finish();
                 Intent selectIntent = new Intent(NoticeActivity.this,
-                        SelectActivity.class);
+                        SelectNoticeActivity.class);
                 startActivity(selectIntent);
                 NoticeActivity.this.finish();
             }

@@ -95,6 +95,7 @@
 
     <string name="repetitive_in_update">新的身份证号不可用，不能修改！</string>
     <string name="update_succeed">修改成功！</string>
+    <string name="delete_succeed">删除成功！</string>
 
     <!--密码修改界面-->
     <string name="first_login">检测到这是您第一次登录，请修改密码</string>
