@@ -28,6 +28,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="@string/first_pw_hint"
+        android:inputType="textPassword"
         android:textSize="20sp" />
 
     <TextView
@@ -43,13 +44,14 @@
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         android:hint="@string/second_pw_hint"
+        android:inputType="textPassword"
         android:textSize="20sp" />
 
     <Button
         android:id="@+id/bt_change_pw"
-        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/change_pw" />
+        android:text="@string/change_pw"
+        android:textSize="20sp" />
 
 </LinearLayout>
