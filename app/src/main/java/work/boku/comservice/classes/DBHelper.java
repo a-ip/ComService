@@ -241,7 +241,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 "(event_name, event_detail, event_time, organizer, max_people) VALUES ('" +
                 eb.getEvent_name() + "', '" +
                 eb.getEvent_detail() + "', '" +
-                eb.getEvent_time() + "', " +
+                eb.getEvent_date() + "', " +
                 eb.getOrganizer() + ", " +
                 eb.getMax_people() +
                 ")";

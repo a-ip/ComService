@@ -24,6 +24,8 @@
     <string name="pl_system_manager">系统管理员</string>
 
     <!--登录界面-->
+    <string name="username">用户名：</string>
+    <string name="password">密码：</string>
     <string name="username_hint">请输入用户名（用户名为数字格式）</string>
     <string name="password_hint">请输入密码（初始密码为123456）</string>
     <string name="login">登录</string>
