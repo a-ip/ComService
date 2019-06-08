@@ -4,15 +4,15 @@ public class EventBean {
 
     private int event_id;
 
-    private String event_name;
+    private String event_name; // 活动名称
 
-    private String event_detail;
+    private String event_detail; // 活动内容
 
-    private String event_time;
+    private String event_date; // 活动日期
 
-    private int organizer;
+    private int organizer; // 活动组织者
 
-    private int max_people;
+    private int max_people; // 活动最大人数
 
     public EventBean() {
     }
@@ -41,12 +41,12 @@ public class EventBean {
         this.event_detail = event_detail;
     }
 
-    public String getEvent_time() {
-        return event_time;
+    public String getEvent_date() {
+        return event_date;
     }
 
-    public void setEvent_time(String event_time) {
-        this.event_time = event_time;
+    public void setEvent_date(String event_time) {
+        this.event_date = event_date;
     }
 
     public int getOrganizer() {
